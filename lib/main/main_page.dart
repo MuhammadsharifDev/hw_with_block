@@ -18,35 +18,42 @@ class MainPage extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                backgroundColor: Colors.white,
-                elevation: null,
-                expandedHeight: 407,
-                flexibleSpace: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: Image.asset(
-                        AppImages.menu_image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                        top: 50,
-                        left: 20,
-                        child: SvgPicture.asset(AppIcon.back_icon)),
-                  ],
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50),
+                  ),
                 ),
+                backgroundColor: Colors.white,
+                elevation: 0,
+                expandedHeight: 407,
+                pinned: true,
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(onPressed: (){}, icon:const Icon(Icons.arrow_back_ios_new)),
+                  ),
+                ),
+                title: const Center(child: Text('Detail Menu',style: TextStyle(fontSize:25,fontWeight: FontWeight.w600,color: Colors.white),)),
                 actions: [
                   Padding(
                     padding: const EdgeInsets.only(right: 15),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.favorite_border),
-                      ),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: IconButton(onPressed: (){
+                        context.read<MainBloc>().add(IsLikeEvent(isLike: !state.isLike));
+                      }, icon: Icon(state.isLike?Icons.favorite:Icons.favorite_border,color: state.isLike?Colors.red:Colors.grey,)),
                     ),
-                  )
+                  ),
                 ],
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    AppImages.menu_image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
               ),
               SliverToBoxAdapter(
                 child: Padding(
@@ -210,15 +217,15 @@ class MainPage extends StatelessWidget {
                       ),),
                       const SizedBox(height: 16,),
 
-                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mushroom', subtitle: '1 Piece', iconBottom:Row(
+                      ListTileItems.items(image: AppImages.mushroom_image, title: 'Mushroom', subtitle: '1 Piece', iconBottom:Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(onPressed: (){
-                            context.read<MainBloc>().add(DecrementEvent( state.count));
+                            context.read<MainBloc>().add(ThirteenElementMinusEvent( state.thirdNumber));
                           }, icon: SvgPicture.asset(AppIcon.remove_icon),),
-                          Text(state.count.toString()),
+                          Text(state.thirdNumber.toString()),
                           IconButton(onPressed: (){
-                            context.read<MainBloc>().add(IncrementEvent(state.count));
+                            context.read<MainBloc>().add(ThirteenElementEvent(state.thirdNumber));
                           }, icon: SvgPicture.asset(AppIcon.add_icon),),
 
                         ],
@@ -230,11 +237,11 @@ class MainPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(onPressed: (){
-                            context.read<MainBloc>().add(DecrementEvent( state.count));
+                            context.read<MainBloc>().add(FourteenElementMinusEvent( state.fourNumber));
                           }, icon: SvgPicture.asset(AppIcon.remove_icon),),
-                          Text(state.count.toString()),
+                          Text(state.fourNumber.toString()),
                           IconButton(onPressed: (){
-                            context.read<MainBloc>().add(IncrementEvent(state.count));
+                            context.read<MainBloc>().add(FourteenElementEvent(state.fourNumber));
                           }, icon: SvgPicture.asset(AppIcon.add_icon),),
 
                         ],

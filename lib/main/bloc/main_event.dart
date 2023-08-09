@@ -6,7 +6,6 @@ abstract class MainEvent {}
 class IncrementEvent extends MainEvent {
   final int number;
 
-
   IncrementEvent(
     this.number,
   );
@@ -18,21 +17,25 @@ class IncrementEvent extends MainEvent {
 class DecrementEvent extends MainEvent {
   final int number;
 
-  DecrementEvent(this.number,);
+  DecrementEvent(
+    this.number,
+  );
 
   @override
-  List<Object?> get props => [number,];
+  List<Object?> get props => [
+        number,
+      ];
 }
 
 class FirstElementEvent extends MainEvent {
-
   final int count;
 
-
-  FirstElementEvent(this.count,);
+  FirstElementEvent(
+    this.count,
+  );
 
   @override
-  List<Object?> get props => [ count];
+  List<Object?> get props => [count];
 }
 
 class FirstElementMinusEvent extends MainEvent {
@@ -44,16 +47,15 @@ class FirstElementMinusEvent extends MainEvent {
   List<Object?> get props => [count];
 }
 
-
 class SecondElementEvent extends MainEvent {
-
   final int secondNumber;
 
-
-  SecondElementEvent(this.secondNumber,);
+  SecondElementEvent(
+    this.secondNumber,
+  );
 
   @override
-  List<Object?> get props => [ secondNumber];
+  List<Object?> get props => [secondNumber];
 }
 
 class SecondElementMinusEvent extends MainEvent {
@@ -66,14 +68,14 @@ class SecondElementMinusEvent extends MainEvent {
 }
 
 class ThirteenElementEvent extends MainEvent {
-
   final int thirdNumber;
 
-
-  ThirteenElementEvent(this.thirdNumber,);
+  ThirteenElementEvent(
+    this.thirdNumber,
+  );
 
   @override
-  List<Object?> get props => [ thirdNumber];
+  List<Object?> get props => [thirdNumber];
 }
 
 class ThirteenElementMinusEvent extends MainEvent {
@@ -86,14 +88,14 @@ class ThirteenElementMinusEvent extends MainEvent {
 }
 
 class FourteenElementEvent extends MainEvent {
-
   final int fourNumber;
 
-
-  FourteenElementEvent(this.fourNumber,);
+  FourteenElementEvent(
+    this.fourNumber,
+  );
 
   @override
-  List<Object?> get props => [ fourNumber];
+  List<Object?> get props => [fourNumber];
 }
 
 class FourteenElementMinusEvent extends MainEvent {
@@ -103,4 +105,13 @@ class FourteenElementMinusEvent extends MainEvent {
 
   @override
   List<Object?> get props => [fourNumber];
+}
+
+class IsLikeEvent extends MainEvent {
+  final bool isLike;
+
+  IsLikeEvent({required this.isLike});
+
+  @override
+  List<Object?> get props => [isLike];
 }

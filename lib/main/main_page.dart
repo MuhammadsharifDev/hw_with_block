@@ -18,6 +18,8 @@ class MainPage extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
+                backgroundColor: Colors.white,
+                elevation: null,
                 expandedHeight: 407,
                 flexibleSpace: Stack(
                   children: <Widget>[
@@ -77,10 +79,10 @@ class MainPage extends StatelessWidget {
                           ),
                           Container(
                             height: 32,
-                            width: 105,
+                            width: 120,
                             decoration: BoxDecoration(
                               color: const Color(0xffF3F3F3),
-                              borderRadius: BorderRadius.circular(50),
+                              borderRadius: BorderRadius.circular(70),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 4, right: 4),
@@ -88,9 +90,13 @@ class MainPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  GestureDetector(child: SvgPicture.asset(AppIcon.remove_icon)),
-                                  const Text('0'),
-                                  GestureDetector(child: SvgPicture.asset(AppIcon.add_icon)),
+                                  IconButton(onPressed: (){
+                                    context.read<MainBloc>().add(DecrementEvent(state.number,));
+                                  }, icon:  SvgPicture.asset(AppIcon.remove_icon),),
+                                   Text(state.number.toString()),
+                                  IconButton(onPressed: (){
+                                    context.read<MainBloc>().add(IncrementEvent(state.number,));
+                                  }, icon:  SvgPicture.asset(AppIcon.add_icon),),
                                 ],
                               ),
                             ),
@@ -171,19 +177,96 @@ class MainPage extends StatelessWidget {
                               color: Color(0xff191D31),
                               fontWeight: FontWeight.w600,)),
                       const SizedBox(height: 16,),
-                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mustard', subtitle: '1 Grm'),
+
+                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mustard', subtitle: '1 Grm', iconBottom:Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(FirstElementMinusEvent(state.count));
+                          }, icon: SvgPicture.asset(AppIcon.remove_icon),),
+                          Text(state.count.toString()),
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(FirstElementEvent(
+                               state.count
+                            ));
+                          }, icon: SvgPicture.asset(AppIcon.add_icon),),
+
+                        ],
+                      ),
+                      ),
                       const SizedBox(height: 16,),
-                      ListTileItems.items(image: AppImages.beef_image, title: 'Beef', subtitle: '1 Slice'),
+                      ListTileItems.items(image: AppImages.beef_image, title: 'Beef', subtitle: '1 Slice', iconBottom:Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(SecondElementMinusEvent( state.secondNumber));
+                          }, icon: SvgPicture.asset(AppIcon.remove_icon),),
+                          Text(state.secondNumber.toString()),
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(SecondElementEvent( state.secondNumber));
+                          }, icon: SvgPicture.asset(AppIcon.add_icon),),
+
+                        ],
+                      ),),
                       const SizedBox(height: 16,),
-                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mushroom', subtitle: '1 Piece'),
+
+                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mushroom', subtitle: '1 Piece', iconBottom:Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(DecrementEvent( state.count));
+                          }, icon: SvgPicture.asset(AppIcon.remove_icon),),
+                          Text(state.count.toString()),
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(IncrementEvent(state.count));
+                          }, icon: SvgPicture.asset(AppIcon.add_icon),),
+
+                        ],
+                      ),
+                      ),
                       const SizedBox(height: 16,),
-                      ListTileItems.items(image: AppImages.onion_image, title: 'Onion', subtitle: '1 Clove'),
+
+                      ListTileItems.items(image: AppImages.onion_image, title: 'Onion', subtitle: '1 Clove', iconBottom: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(DecrementEvent( state.count));
+                          }, icon: SvgPicture.asset(AppIcon.remove_icon),),
+                          Text(state.count.toString()),
+                          IconButton(onPressed: (){
+                            context.read<MainBloc>().add(IncrementEvent(state.count));
+                          }, icon: SvgPicture.asset(AppIcon.add_icon),),
+
+                        ],
+                      ),),
                       const SizedBox(height: 15,),
                       const Text('Location',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Color(0xff191D31),),),
                       const SizedBox(height: 15,),
                       Image.asset(AppImages.location_image),
                       const SizedBox(height: 20,),
-                      Image.asset('assets/png_images/price.jpg'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset('assets/png_images/price.jpg'),
+                          Container(
+                            height: 56,
+                            width: 157,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: const Color(0xffF86A2E),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(AppIcon.bag_icon),
+                                  const Text('Add to Cart',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.white),),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -2,10 +2,13 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework_with_block/core/utils/app_icon.dart';
 import 'package:homework_with_block/core/utils/app_images.dart';
+import 'package:homework_with_block/main/bloc/main_bloc.dart';
 
 class ListTileItems{
 
-  static ListTile items({required String image,required String title,required String subtitle,}){
+
+
+  static ListTile items({required String image,required String title,required String subtitle,required var iconBottom}){
     return  ListTile(
       leading: Container(
         height: 40,
@@ -24,25 +27,14 @@ class ListTileItems{
 
       subtitle:  Text(subtitle,style: const TextStyle(color: Color(0xff8C8E98),fontWeight: FontWeight.w400,fontSize: 12),),
 
-      trailing:  Container(
-        height: 32,
-        width: 105,
-        decoration: BoxDecoration(
-          color: const Color(0xffF3F3F3),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 4, right: 4),
-          child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(child: SvgPicture.asset(AppIcon.remove_icon)),
-              const Text('0'),
-              GestureDetector(child: SvgPicture.asset(AppIcon.add_icon)),
-            ],
-          ),
-        ),
+      trailing: Container(
+    height: 32,
+    width: 120,
+    decoration: BoxDecoration(
+    color: const Color(0xffF3F3F3),
+    borderRadius: BorderRadius.circular(50),
+    ),
+    child:iconBottom,
       ),
     );
   }

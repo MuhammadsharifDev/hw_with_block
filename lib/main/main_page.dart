@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework_with_block/core/utils/app_icon.dart';
 import 'package:homework_with_block/core/utils/app_images.dart';
 import 'package:homework_with_block/main/bloc/main_bloc.dart';
+import 'package:homework_with_block/main/widgets/listtile_widget.dart';
+import 'package:homework_with_block/main/widgets/row_icon_widgets.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -40,25 +42,39 @@ class MainPage extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Icon(Icons.favorite_border),
                       ),
-
                     ),
                   )
                 ],
               ),
-
-               SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 24,right: 24),
+                  padding: const EdgeInsets.only(left: 24, right: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height:19,),
-                      const Text('Noodles',style: TextStyle(fontSize: 14,color: Colors.grey,fontWeight:FontWeight.w700),),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 19,
+                      ),
+                      const Text(
+                        'Noodles',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("Fried grill noodles with\negg special",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20,color: Colors.black),),
+                          const Text(
+                            "Fried grill noodles with\negg special",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                                color: Colors.black),
+                          ),
                           Container(
                             height: 32,
                             width: 105,
@@ -66,40 +82,108 @@ class MainPage extends StatelessWidget {
                               color: const Color(0xffF3F3F3),
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 4, right: 4),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  IconButton(onPressed: (){}, icon: const Icon(Icons.remove)),
-                                  Text('0'),
-                                  IconButton(onPressed: (){}, icon: const Icon(Icons.add)),
+                                  GestureDetector(child: SvgPicture.asset(AppIcon.remove_icon)),
+                                  const Text('0'),
+                                  GestureDetector(child: SvgPicture.asset(AppIcon.add_icon)),
                                 ],
                               ),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24,),
+                      const SizedBox(
+                        height: 24,
+                      ),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Rating',style: TextStyle(color: Color(0xff8C8E98),fontSize: 14),),
-                          Text('Calories',style: TextStyle(color: Color(0xff8C8E98),fontSize: 14),),
-                          Text('Time',style: TextStyle(color: Color(0xff8C8E98),fontSize: 14),),
+                          Text(
+                            'Rating',
+                            style: TextStyle(
+                                color: Color(0xff8C8E98), fontSize: 14),
+                          ),
+                          Text(
+                            'Calories',
+                            style: TextStyle(
+                                color: Color(0xff8C8E98), fontSize: 14),
+                          ),
+                          Text(
+                            'Time',
+                            style: TextStyle(
+                                color: Color(0xff8C8E98), fontSize: 14),
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 10,),
-                       Row(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(AppIcon.stars_icon),
-                              const SizedBox(width: 5,),
-                              const Text('4.8',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Color(0xff191D31),),),
-                            ],
-                          )
+                         IconWidget.item(images: AppImages.star_image, text: '4.5'),
+                         IconWidget.item(images: AppImages.fire_image, text: '124 Kcal'),
+                         IconWidget.item(images: AppImages.clock_image, text: '15 min'),
                         ],
-                      )
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      const Text(
+                        'Description',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Color(0xff191D31)),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      RichText(
+                        text: const TextSpan(
+                          style: TextStyle(fontSize: 18.0, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text:
+                                    '''Hello,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum tempor lorem, sed placerat est rutrum a. Nullam non dolor tempus, feugiat risus sed, fermentum arcu. Sed euismod, orci nec fringilla semper, urna tellus vehicula enim, non euismod ante erat nec nu '''),
+                            TextSpan(
+                              text: 'Read more',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const Text('Add Extra Ingredients',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xff191D31),
+                              fontWeight: FontWeight.w600,)),
+                      const SizedBox(height: 16,),
+                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mustard', subtitle: '1 Grm'),
+                      const SizedBox(height: 16,),
+                      ListTileItems.items(image: AppImages.beef_image, title: 'Beef', subtitle: '1 Slice'),
+                      const SizedBox(height: 16,),
+                      ListTileItems.items(image: AppImages.mustard_image, title: 'Mushroom', subtitle: '1 Piece'),
+                      const SizedBox(height: 16,),
+                      ListTileItems.items(image: AppImages.onion_image, title: 'Onion', subtitle: '1 Clove'),
+                      const SizedBox(height: 15,),
+                      const Text('Location',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Color(0xff191D31),),),
+                      const SizedBox(height: 15,),
+                      Image.asset(AppImages.location_image),
+                      const SizedBox(height: 20,),
+                      Image.asset('assets/png_images/price.jpg'),
                     ],
                   ),
                 ),
